@@ -23,7 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
       </head>
-      <body className="min-h-screen bg-white dark:bg-gray-950">
+      <body className="min-h-screen bg-white font-sans dark:bg-gray-950">
         {children}
         <Toaster position="bottom-right" richColors />
       </body>

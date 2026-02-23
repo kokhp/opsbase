@@ -3,6 +3,8 @@ import { getSession } from '@/lib/auth';
 import { db } from '@/lib/db';
 import { DashboardShell } from '@/components/dashboard/shell';
 
+export const dynamic = 'force-dynamic';
+
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
   const user = await getSession();
   if (!user) redirect('/login');

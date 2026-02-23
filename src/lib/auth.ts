@@ -14,6 +14,60 @@ export interface AuthUser {
   created_at: string;
 }
 
+async function ensureAuthTables(): Promise<void> {
+  const sql = db();
+  await sql`
+    CREATE TABLE IF NOT EXISTS users (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      email TEXT UNIQUE NOT NULL,
+      password_hash TEXT NOT NULL,
+      name TEXT,
+      avatar_url TEXT,
+      created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+      updated_at TIMESTAMPTZ DEFAULT NOW() NOT NULL
+    )
+  `;
+  await sql`
+    CREATE TABLE IF NOT EXISTS sessions (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      token TEXT UNIQUE NOT NULL,
+      expires_at TIMESTAMPTZ NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL
+    )
+  `;
+  await sql`
+    CREATE TABLE IF NOT EXISTS subscriptions (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id UUID UNIQUE NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      stripe_customer_id TEXT,
+      stripe_subscription_id TEXT,
+      plan TEXT DEFAULT 'free' CHECK (plan IN ('free', 'pro', 'business')),
+      status TEXT DEFAULT 'active' CHECK (status IN ('active', 'canceled', 'past_due', 'trialing')),
+      current_period_end TIMESTAMPTZ,
+      created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+      updated_at TIMESTAMPTZ DEFAULT NOW() NOT NULL
+    )
+  `;
+  await sql`
+    CREATE TABLE IF NOT EXISTS usage (
+      id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+      user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+      feature TEXT NOT NULL,
+      count INTEGER DEFAULT 0,
+      period TEXT NOT NULL,
+      created_at TIMESTAMPTZ DEFAULT NOW() NOT NULL,
+      UNIQUE(user_id, feature, period)
+    )
+  `;
+  await sql`CREATE INDEX IF NOT EXISTS idx_users_email ON users(email)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_sessions_token ON sessions(token)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_sessions_user_id ON sessions(user_id)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_sessions_expires ON sessions(expires_at)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_subscriptions_user_id ON subscriptions(user_id)`;
+  await sql`CREATE INDEX IF NOT EXISTS idx_usage_user_feature ON usage(user_id, feature, period)`;
+}
+
 async function hashPassword(password: string): Promise<string> {
   return bcrypt.hash(password, 10);
 }
@@ -23,6 +77,7 @@ async function verifyPassword(password: string, hash: string): Promise<boolean> 
 }
 
 export async function createSession(userId: string): Promise<string> {
+  await ensureAuthTables();
   const token = crypto.randomUUID();
   const expiresAt = new Date(Date.now() + SESSION_EXPIRY_DAYS * 24 * 60 * 60 * 1000);
   const sql = db();
@@ -41,6 +96,7 @@ export async function createSession(userId: string): Promise<string> {
 }
 
 export async function getSession(): Promise<AuthUser | null> {
+  await ensureAuthTables();
   const cookieStore = cookies();
   const token = cookieStore.get(SESSION_COOKIE)?.value;
   if (!token) return null;
@@ -65,6 +121,7 @@ export async function signUp(
   name: string
 ): Promise<{ user?: AuthUser; error?: string }> {
   try {
+    await ensureAuthTables();
     const sql = db();
 
     const existing = await sql`SELECT id FROM users WHERE email = ${email}`;
@@ -91,6 +148,7 @@ export async function signIn(
   password: string
 ): Promise<{ user?: AuthUser; error?: string }> {
   try {
+    await ensureAuthTables();
     const sql = db();
 
     const users = await sql`
