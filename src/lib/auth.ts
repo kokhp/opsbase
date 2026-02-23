@@ -16,6 +16,7 @@ export interface AuthUser {
 
 async function ensureAuthTables(): Promise<void> {
   const sql = db();
+  await sql`CREATE EXTENSION IF NOT EXISTS "pgcrypto"`;
   await sql`
     CREATE TABLE IF NOT EXISTS users (
       id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
