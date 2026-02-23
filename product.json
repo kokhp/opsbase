@@ -1,0 +1,429 @@
+{
+  "name": "OpsBase",
+  "slug": "opsbase",
+  "tagline": "Build a business that runs without you.",
+  "description": "OpsBase is the operations management platform for small business owners who are trapped running every aspect of their business. It combines SOP documentation, task delegation, workflow automation, and team coordination into one hub — so your business keeps running whether you're there or not.",
+  "category": "BETTER_ALTERNATIVE",
+  "pain_point": "Small business owners cannot step away from their business because operations, decisions, and client communication all depend on them personally.",
+  "target_audience": "Small business owners (5-50 employees) in service industries — trades, medical practices, agencies, restaurants, salons, repair shops — who want to systematize operations and reduce owner-dependency.",
+  "competitors": [
+    "Trainual",
+    "SweetProcess",
+    "Process Street",
+    "Monday.com",
+    "Connecteam",
+    "Notion"
+  ],
+  "competitive_gaps": [
+    "No existing tool is designed specifically for owner-independence — all are generic project/process tools",
+    "Most competitors only handle documentation OR task management, never both together with delegation logic",
+    "No competitor offers an owner-absence mode with automated handoffs and escalation rules",
+    "Decision delegation with spending limits and authority levels doesn't exist in current tools",
+    "Per-seat pricing makes competitors prohibitively expensive for 10-30 person teams"
+  ],
+  "features": [
+    {
+      "name": "SOP Builder",
+      "description": "Create, version, and organize standard operating procedures with step-by-step instructions, checklists, embedded media, and role assignments. Staff can mark steps complete and flag issues.",
+      "layer": 0,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Users can create multi-step SOPs with rich text, images, and video embeds",
+        "SOPs support versioning with change history and rollback",
+        "SOPs can be assigned to specific roles or team members",
+        "Staff can execute SOPs as interactive checklists and mark steps complete"
+      ]
+    },
+    {
+      "name": "Task Delegation Engine",
+      "description": "Create, assign, and track tasks with due dates, priority levels, dependencies, and automatic escalation rules when tasks are overdue or blocked.",
+      "layer": 0,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Tasks can be created with title, description, assignee, due date, and priority",
+        "Tasks support dependencies so blocked tasks are clearly visible",
+        "Overdue tasks automatically escalate to the next person in the escalation chain",
+        "Assignees receive notifications on assignment, reminders before due dates, and escalation alerts"
+      ]
+    },
+    {
+      "name": "Team Workspace & Dashboard",
+      "description": "Centralized workspace showing real-time business status — open tasks, active workflows, pending decisions, and team availability at a glance.",
+      "layer": 0,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Dashboard displays summary cards for tasks, workflows, escalations, and team status",
+        "Each team member has a personalized view showing their assignments and priorities",
+        "Real-time updates without page refresh using WebSocket or polling",
+        "Workspace supports multiple business locations or departments"
+      ]
+    },
+    {
+      "name": "Role & Permission Management",
+      "description": "Define custom roles with granular permissions controlling access to SOPs, tasks, clients, financials, and admin settings. Supports role hierarchy for escalation.",
+      "layer": 0,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Admins can create custom roles with granular permission toggles per feature area",
+        "Roles support hierarchy levels for escalation chain routing",
+        "Users can be assigned multiple roles",
+        "Permission changes take effect immediately across all sessions"
+      ]
+    },
+    {
+      "name": "Workflow Automation Engine",
+      "description": "Visual builder to define automated workflows triggered by events (new client, task completion, schedule change) with conditions, actions, and notifications.",
+      "layer": 1,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Users can create workflows with triggers, conditions, and actions via a visual drag-and-drop builder",
+        "Supports event triggers: task completion, form submission, schedule change, time-based",
+        "Actions include: create task, send notification, update record, assign to role",
+        "Workflow execution history is logged with success/failure status"
+      ]
+    },
+    {
+      "name": "Decision Delegation Framework",
+      "description": "Pre-authorize team members to make specific categories of decisions with defined spending limits, authority levels, and approval workflows for edge cases.",
+      "layer": 2,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Owners can define decision categories (purchasing, refunds, scheduling changes, client issues)",
+        "Each category has assignable authority levels with monetary thresholds",
+        "Decisions within authority are auto-approved; out-of-scope decisions trigger approval requests",
+        "Full audit trail of all decisions made, by whom, and under what authority"
+      ]
+    },
+    {
+      "name": "Client Communication Hub",
+      "description": "Centralized inbox aggregating client emails, messages, and notes. Supports auto-responses, templates, and assignment so any team member can handle client requests.",
+      "layer": 2,
+      "priority": "high",
+      "acceptance_criteria": [
+        "Incoming client communications appear in a shared team inbox",
+        "Messages can be assigned to specific team members with internal notes",
+        "Template responses can be created and used for common inquiries",
+        "Auto-responses can be configured for after-hours or owner-absence periods"
+      ]
+    },
+    {
+      "name": "Shift & Staff Scheduling",
+      "description": "Create and manage staff schedules with shift templates, availability tracking, swap requests, and automatic conflict detection.",
+      "layer": 2,
+      "priority": "high",
+      "acceptance_criteria": [
+        "Managers can create weekly/monthly schedules with drag-and-drop shifts",
+        "Staff can set recurring availability and request time off",
+        "Shift swap requests can be submitted and approved by designated managers",
+        "Schedule conflicts and understaffing warnings are flagged automatically"
+      ]
+    },
+    {
+      "name": "Owner Absence Mode",
+      "description": "Activate a special mode when the owner steps away that routes all escalations to designated delegates, enables auto-responses, and logs everything for the owner's return.",
+      "layer": 3,
+      "priority": "high",
+      "acceptance_criteria": [
+        "Owner can activate absence mode with start/end dates and designated delegates",
+        "All escalations that would normally reach the owner are rerouted to delegates",
+        "Auto-response messages activate for client-facing communications",
+        "A comprehensive absence report is generated when the owner returns"
+      ]
+    },
+    {
+      "name": "Knowledge Base",
+      "description": "Searchable repository of business knowledge — procedures, FAQs, vendor contacts, equipment manuals, policies — accessible to all team members by role.",
+      "layer": 1,
+      "priority": "high",
+      "acceptance_criteria": [
+        "Articles can be created with rich text, file attachments, and categories",
+        "Full-text search across all knowledge base content",
+        "Access can be restricted by role so sensitive information is protected",
+        "Articles track view counts and last-updated dates for maintenance"
+      ]
+    },
+    {
+      "name": "Activity Feed & Audit Log",
+      "description": "Chronological feed of all business activities — task completions, decisions made, SOPs executed, schedule changes — with filtering by team member, category, and date.",
+      "layer": 1,
+      "priority": "high",
+      "acceptance_criteria": [
+        "All significant actions are logged with timestamp, actor, and details",
+        "Feed supports filtering by user, action type, date range, and entity",
+        "Entries link to the relevant task, SOP, or decision for context",
+        "Feed is exportable as CSV for compliance or review purposes"
+      ]
+    },
+    {
+      "name": "Team Chat & Announcements",
+      "description": "Internal messaging with channels for departments/topics, direct messages, and a pinned announcements board for company-wide updates.",
+      "layer": 3,
+      "priority": "high",
+      "acceptance_criteria": [
+        "Users can create topic-based channels and send direct messages",
+        "Announcements can be pinned and marked as required-read with acknowledgment tracking",
+        "Messages support @mentions that trigger notifications",
+        "Chat history is searchable and persistent"
+      ]
+    },
+    {
+      "name": "Vendor & Supplier Management",
+      "description": "Track vendor contacts, contracts, order history, and reorder points. Set up automated purchase order workflows with approval thresholds.",
+      "layer": 4,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "Vendor profiles store contact info, contracts, payment terms, and notes",
+        "Order history is tracked with dates, amounts, and delivery status",
+        "Reorder point alerts notify the assigned purchaser when inventory is low",
+        "Purchase orders above threshold amounts trigger approval workflows"
+      ]
+    },
+    {
+      "name": "Operations Dashboard & Analytics",
+      "description": "Real-time dashboards showing task completion rates, SOP adherence, response times, bottlenecks, and team performance trends over time.",
+      "layer": 1,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Dashboard shows KPIs: open tasks, overdue items, SOP completion rate, avg response time",
+        "Charts display trends over configurable time periods (7d, 30d, 90d)",
+        "Bottleneck detection highlights repeatedly delayed tasks or overburdened team members",
+        "Dashboard data is exportable as PDF or CSV"
+      ]
+    },
+    {
+      "name": "Owner Absence Report",
+      "description": "Auto-generated summary of everything that happened while the owner was away — decisions made, tasks completed, issues escalated, clients contacted, money spent.",
+      "layer": 3,
+      "priority": "high",
+      "acceptance_criteria": [
+        "Report auto-generates when owner deactivates absence mode",
+        "Includes categorized summary: decisions, tasks, escalations, financials, client interactions",
+        "Flagged items that need owner review are highlighted at the top",
+        "Report is saved in history and can be exported as PDF"
+      ]
+    },
+    {
+      "name": "Custom Fields & Templates",
+      "description": "Extend tasks, SOPs, clients, and vendors with custom fields (text, number, date, dropdown). Create templates for frequently used configurations.",
+      "layer": 2,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "Custom fields can be added to tasks, SOPs, clients, and vendor entities",
+        "Supported field types: text, number, date, single-select, multi-select, checkbox",
+        "Custom fields appear in search, filter, and export results",
+        "Entity templates pre-fill fields for quick creation of common items"
+      ]
+    },
+    {
+      "name": "Import/Export & Bulk Operations",
+      "description": "Import existing data from CSV/Excel and export any data view. Bulk edit, assign, or archive multiple records at once.",
+      "layer": 4,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "CSV import with column mapping, validation, and error reporting",
+        "All list views support CSV and Excel export",
+        "Bulk select supports mass-assign, mass-archive, and mass-update operations",
+        "Import history tracks past imports with undo capability"
+      ]
+    },
+    {
+      "name": "Advanced Search & Filtering",
+      "description": "Global search across all entities with advanced filters, saved views, and quick-access recent items.",
+      "layer": 2,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "Global search bar indexes SOPs, tasks, clients, knowledge base, and messages",
+        "Advanced filters support combining multiple conditions with AND/OR logic",
+        "Users can save filter combinations as named views for quick access",
+        "Search results show relevant context snippets and link directly to items"
+      ]
+    },
+    {
+      "name": "Document Management",
+      "description": "Upload, organize, and share business documents (contracts, licenses, manuals) with folder structure, tagging, and access controls.",
+      "layer": 3,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "Files can be uploaded with drag-and-drop, organized in folders, and tagged",
+        "Access permissions follow role-based rules",
+        "Documents can be linked to SOPs, vendors, clients, and tasks",
+        "Version history tracks document updates with previous versions accessible"
+      ]
+    },
+    {
+      "name": "Email & SMS Notifications",
+      "description": "Configurable notification system delivering alerts via in-app, email, and SMS for task assignments, escalations, deadlines, and workflow events.",
+      "layer": 1,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Users can configure notification preferences per channel (in-app, email, SMS) and event type",
+        "Critical escalations always trigger all enabled channels",
+        "Notification digest option for batching non-urgent alerts",
+        "SMS notifications work for shift changes and urgent escalations"
+      ]
+    },
+    {
+      "name": "Webhook & API Access",
+      "description": "RESTful API for programmatic access and outgoing webhooks to integrate with external tools like accounting software, POS systems, and CRMs.",
+      "layer": 5,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "Documented REST API with authentication via API keys",
+        "Outgoing webhooks configurable per event type with retry logic",
+        "API rate limiting and usage tracking per API key",
+        "Webhook delivery logs with payload inspection and manual retry"
+      ]
+    },
+    {
+      "name": "Calendar Integration",
+      "description": "Two-way sync with Google Calendar and Outlook for staff schedules, task deadlines, and client appointments.",
+      "layer": 5,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "OAuth-based connection to Google Calendar and Microsoft Outlook",
+        "Shifts and task deadlines sync bidirectionally with external calendars",
+        "Calendar events created in OpsBase appear in connected calendars within 5 minutes",
+        "Conflict detection alerts when external calendar events overlap with shifts"
+      ]
+    },
+    {
+      "name": "Business Settings & Configuration",
+      "description": "Company profile, business hours, locations, department structure, branding, and global preferences for the organization.",
+      "layer": 0,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Business profile captures name, industry, logo, business hours, and timezone",
+        "Multiple locations/departments can be configured with separate settings",
+        "Global defaults for notifications, escalation timeouts, and approval thresholds",
+        "Settings changes are logged in the audit trail"
+      ]
+    },
+    {
+      "name": "Billing & Subscription Management",
+      "description": "Self-service plan management with usage-based billing, invoice history, and payment method management via Stripe integration.",
+      "layer": 6,
+      "priority": "high",
+      "acceptance_criteria": [
+        "Users can view current plan, usage, and upgrade/downgrade options",
+        "Stripe integration handles payment processing and subscription lifecycle",
+        "Invoice history with downloadable PDF invoices",
+        "Grace period and dunning emails for failed payments"
+      ]
+    },
+    {
+      "name": "Team Member Management",
+      "description": "Invite team members via email or link, manage profiles, set roles, track onboarding progress, and handle offboarding with access revocation.",
+      "layer": 0,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "Admins can invite users via email with role pre-assignment",
+        "Team member profiles show role, department, contact info, and activity summary",
+        "Onboarding checklist tracks required SOPs and training completion per new hire",
+        "Offboarding revokes all access and reassigns open tasks"
+      ]
+    },
+    {
+      "name": "Guided Onboarding Wizard",
+      "description": "Step-by-step setup flow for new businesses covering company profile, first SOP creation, team invites, and workflow configuration with contextual tips.",
+      "layer": 0,
+      "priority": "critical",
+      "acceptance_criteria": [
+        "New accounts are guided through a multi-step onboarding flow",
+        "Steps include: business profile, invite team, create first SOP, set up first workflow",
+        "Industry-specific templates are suggested based on business type selection",
+        "Onboarding progress is saved and can be resumed later"
+      ]
+    },
+    {
+      "name": "Mobile-Responsive Views",
+      "description": "Fully responsive web interface optimized for phone and tablet use so field staff can access SOPs, complete tasks, and communicate from any device.",
+      "layer": 7,
+      "priority": "high",
+      "acceptance_criteria": [
+        "All core features are usable on screens as small as 375px wide",
+        "Touch-optimized controls for task completion, SOP navigation, and messaging",
+        "Offline indicator with graceful degradation when connectivity is poor",
+        "Camera access for uploading photos directly to tasks or documents"
+      ]
+    },
+    {
+      "name": "Keyboard Shortcuts & Quick Actions",
+      "description": "Power-user productivity features including keyboard shortcuts for navigation, quick-create modals, and a command palette for fast access to any feature.",
+      "layer": 8,
+      "priority": "medium",
+      "acceptance_criteria": [
+        "Command palette accessible via Cmd/Ctrl+K for searching and navigating to any entity",
+        "Keyboard shortcuts for common actions: new task, new SOP, search, navigate sections",
+        "Quick-create modal allows task/note creation without leaving current view",
+        "Shortcut reference sheet accessible via ? key"
+      ]
+    }
+  ],
+  "keywords": [
+    "business operations management",
+    "small business automation",
+    "SOP software",
+    "owner independence",
+    "task delegation",
+    "workflow automation",
+    "operations platform",
+    "business systematization",
+    "team management software",
+    "process documentation"
+  ],
+  "subreddits": [
+    "smallbusiness",
+    "Entrepreneur",
+    "sweatystartup",
+    "operations",
+    "smallbusinessowner"
+  ],
+  "color_primary": "#2563EB",
+  "color_secondary": "#1E40AF",
+  "hero": {
+    "headline": "Your Business Should Run Without You",
+    "subheadline": "OpsBase systematizes your operations — SOPs, task delegation, decisions, and team coordination — so you can finally step away without everything falling apart.",
+    "cta_text": "Start Free Trial",
+    "cta_url": "/signup"
+  },
+  "problem": {
+    "headline": "You ARE the single point of failure",
+    "points": [
+      "Your team can't make decisions without you because there are no documented rules or authority levels — every question routes to the owner.",
+      "Procedures live in your head, not in a system. When you're unavailable, staff guess, improvise, or just wait — costing you clients and revenue.",
+      "You've tried project management tools but they're designed for tech teams, not service businesses. You need operations management, not sprint planning."
+    ]
+  },
+  "solution": {
+    "headline": "Systematize everything so your business runs itself",
+    "description": "OpsBase combines SOP documentation, task delegation with escalation rules, decision authority frameworks, and team coordination into one platform built for service businesses. Document your processes, delegate decisions with guardrails, automate routine workflows, and get a full report of what happened while you were away."
+  },
+  "faq": [
+    {
+      "question": "Is OpsBase free to try?",
+      "answer": "Yes. OpsBase offers a 14-day free trial with full access to all features. No credit card required. After the trial, plans start at $49/mo for up to 10 team members."
+    },
+    {
+      "question": "How is OpsBase different from Monday.com or Notion?",
+      "answer": "Those are general-purpose tools you have to build from scratch. OpsBase is purpose-built for owner-operated businesses — it includes SOP templates for your industry, decision delegation with spending limits, an owner absence mode, and return reports. No spreadsheet-to-board customization needed."
+    },
+    {
+      "question": "What industries does OpsBase work for?",
+      "answer": "OpsBase is built for service businesses with 5-50 team members: trades (HVAC, plumbing, electrical), medical/dental practices, salons and spas, agencies, repair shops, restaurants, cleaning companies, and more."
+    },
+    {
+      "question": "How long does it take to set up?",
+      "answer": "Most businesses are up and running in under a day. Our guided onboarding wizard walks you through setup, and industry-specific templates give you a head start on SOPs and workflows."
+    },
+    {
+      "question": "Can my field staff use it on their phones?",
+      "answer": "Absolutely. OpsBase is fully mobile-responsive. Your team can view SOPs, complete tasks, respond to clients, and check their schedule from any phone or tablet browser."
+    },
+    {
+      "question": "What happens to my data if I cancel?",
+      "answer": "You can export all your data (SOPs, tasks, knowledge base, documents) as CSV and PDF files at any time. After cancellation, your data is retained for 30 days before deletion."
+    }
+  ],
+  "total_score": 27,
+  "monetization_mode": "free"
+}
